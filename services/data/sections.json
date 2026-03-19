@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "sec-academics",
+    "name": "Academics",
+    "subSections": [
+      "CS",
+      "AIML",
+      "ECE"
+    ]
+  },
+  {
+    "_id": "sec-hostel",
+    "name": "Hostel",
+    "subSections": [
+      "Boys Hostel",
+      "Girls Hostel"
+    ]
+  },
+  {
+    "_id": "sec-transport",
+    "name": "Transport",
+    "subSections": [
+      "Route 1",
+      "Route 2"
+    ]
+  },
+  {
+    "_id": "sec-general",
+    "name": "General",
+    "subSections": []
+  }
+]

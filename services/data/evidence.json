@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "ev-001",
+    "issueId": "iss-001",
+    "userId": "usr-student-a",
+    "fileUrl": "",
+    "text": "Speed test screenshot shows 0.2 Mbps.",
+    "createdAt": "2026-03-15T13:44:09.476Z"
+  },
+  {
+    "_id": "ev-002",
+    "issueId": "iss-002",
+    "userId": "usr-student-b",
+    "fileUrl": "",
+    "text": "Video evidence of dry taps in Block B.",
+    "createdAt": "2026-03-16T13:44:09.476Z"
+  },
+  {
+    "_id": "ev-003",
+    "issueId": "iss-004",
+    "userId": "usr-student-b",
+    "fileUrl": "",
+    "text": "Attendance log reflects delay impact.",
+    "createdAt": "2026-03-18T13:44:09.476Z"
+  },
+  {
+    "_id": "ev-004",
+    "issueId": "iss-005",
+    "userId": "usr-student-c",
+    "fileUrl": "",
+    "text": "Screenshot of overlapping exam schedule.",
+    "createdAt": "2026-03-17T13:44:09.476Z"
+  },
+  {
+    "_id": "ev-005",
+    "issueId": "iss-006",
+    "userId": "usr-student-d",
+    "fileUrl": "",
+    "text": "Image references for food quality issue.",
+    "createdAt": "2026-03-15T13:44:09.476Z"
+  }
+]

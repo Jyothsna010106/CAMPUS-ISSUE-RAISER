@@ -1,19 +1,25 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/auth';
+import { useAuth } from '../context/useAuth';
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setSession } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       const res = await login(form);
-      localStorage.setItem('token', res.data.token);
-      navigate('/dashboard');
+      setSession(res.data.token);
+      if (res?.data?.user?.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/home');
+      }
     } catch (err) {
       setError(err?.response?.data?.error || 'Invalid credentials');
     }
@@ -21,9 +27,19 @@ export default function LoginPage() {
 
   return (
     <div className="auth-layout">
-      <div className="auth-card">
-        <h1>Welcome Back</h1>
-        <p>Login to continue to Campus Issue & Transparency System</p>
+      <div className="auth-card auth-card-rich">
+        <div className="auth-side">
+          <h1>Campus Issue System</h1>
+          <p>Raise, track, and resolve campus issues with clarity and safety.</p>
+          <ul>
+            <li>Anonymous reporting for sensitive concerns</li>
+            <li>Real progress tracking with accountability</li>
+            <li>Tag authorities and get notified automatically</li>
+          </ul>
+        </div>
+        <div className="auth-form-wrap">
+          <h2>Welcome back</h2>
+          <p className="hint">Sign in to continue improving your campus.</p>
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="email" placeholder="Enter your email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} required />
@@ -33,7 +49,8 @@ export default function LoginPage() {
           <button className="btn" type="submit">Sign in</button>
         </form>
         <div className="form-footer">
-          New to platform? <Link className="link-muted" to="/register">Create an account</Link>
+          New user? <Link className="link-muted" to="/register">Create account</Link>
+        </div>
         </div>
       </div>
     </div>

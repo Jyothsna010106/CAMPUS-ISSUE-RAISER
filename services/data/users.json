@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "usr-admin",
+    "name": "System Admin",
+    "email": "admin@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "admin",
+    "department": "General"
+  },
+  {
+    "_id": "usr-teacher-acad",
+    "name": "Academic Teacher",
+    "email": "teacher@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "teacher",
+    "department": "Academics"
+  },
+  {
+    "_id": "usr-teacher-hostel",
+    "name": "Hostel Warden",
+    "email": "warden@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "teacher",
+    "department": "Hostel"
+  },
+  {
+    "_id": "usr-hod",
+    "name": "Department HOD",
+    "email": "hod@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "hod",
+    "department": "Academics"
+  },
+  {
+    "_id": "usr-dean",
+    "name": "Campus Dean",
+    "email": "dean@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "dean",
+    "department": "General"
+  },
+  {
+    "_id": "usr-management",
+    "name": "Management Office",
+    "email": "management@campus.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "management",
+    "department": "General"
+  },
+  {
+    "_id": "usr-student-a",
+    "name": "Asha Student",
+    "email": "asha@student.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "student",
+    "department": "Academics"
+  },
+  {
+    "_id": "usr-student-b",
+    "name": "Rahul Student",
+    "email": "rahul@student.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "student",
+    "department": "Hostel"
+  },
+  {
+    "_id": "usr-student-c",
+    "name": "Nisha Student",
+    "email": "nisha@student.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "student",
+    "department": "Transport"
+  },
+  {
+    "_id": "usr-student-d",
+    "name": "Arjun Student",
+    "email": "arjun@student.local",
+    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "role": "student",
+    "department": "General"
+  }
+]

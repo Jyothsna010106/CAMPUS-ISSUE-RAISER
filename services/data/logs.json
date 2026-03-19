@@ -1,0 +1,385 @@
+[
+  {
+    "_id": "log-001",
+    "service": "issue-service",
+    "action": "seed_issue_created",
+    "userId": "usr-student-a",
+    "issueId": "iss-001",
+    "details": {},
+    "createdAt": "2026-03-15T13:44:09.476Z"
+  },
+  {
+    "_id": "log-002",
+    "service": "interaction-service",
+    "action": "seed_issue_supported",
+    "userId": "usr-student-b",
+    "issueId": "iss-001",
+    "details": {},
+    "createdAt": "2026-03-15T13:44:09.476Z"
+  },
+  {
+    "_id": "log-003",
+    "service": "escalation-service",
+    "action": "seed_issue_escalated",
+    "userId": "usr-student-d",
+    "issueId": "iss-006",
+    "details": {
+      "level": 4
+    },
+    "createdAt": "2026-03-15T13:44:09.476Z"
+  },
+  {
+    "_id": "log-004",
+    "service": "status-service",
+    "action": "seed_admin_status_update",
+    "userId": "usr-admin",
+    "issueId": "iss-003",
+    "details": {
+      "status": "Resolved"
+    },
+    "createdAt": "2026-03-18T13:44:09.476Z"
+  },
+  {
+    "_id": "906937bb-bb16-473f-83a3-b54ebd1423b8",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-student-a",
+    "issueId": null,
+    "details": {
+      "email": "asha@student.local"
+    },
+    "createdAt": "2026-03-19T13:45:36.102Z"
+  },
+  {
+    "_id": "a2725ddb-d4c8-4071-9318-8136e4ee5a48",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-student-a",
+    "issueId": "0ca1ffd2-9b33-4275-9a56-a92a45e0213e",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "smoke",
+        "anonymous"
+      ],
+      "taggedAuthorityIds": [
+        "usr-teacher-acad"
+      ]
+    },
+    "createdAt": "2026-03-19T13:45:36.248Z"
+  },
+  {
+    "_id": "ace71ce4-cfef-4a06-a199-51085cedc56f",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-student-b",
+    "issueId": null,
+    "details": {
+      "email": "rahul@student.local"
+    },
+    "createdAt": "2026-03-19T13:45:36.342Z"
+  },
+  {
+    "_id": "6e9c3be9-a7ce-4bd0-a3f4-823316a0126d",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-teacher-acad",
+    "issueId": null,
+    "details": {
+      "email": "teacher@campus.local"
+    },
+    "createdAt": "2026-03-19T13:45:36.428Z"
+  },
+  {
+    "_id": "10a1f32d-3782-46a9-8e3e-3bccf9ebc290",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-admin",
+    "issueId": null,
+    "details": {
+      "email": "admin@campus.local"
+    },
+    "createdAt": "2026-03-19T13:47:10.647Z"
+  },
+  {
+    "_id": "e0cde63a-0e65-4d2c-869a-3142f49273e2",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-student-a",
+    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "chair"
+      ],
+      "taggedAuthorityIds": [
+        "usr-dean"
+      ]
+    },
+    "createdAt": "2026-03-19T13:50:43.332Z"
+  },
+  {
+    "_id": "a5a9007a-29b0-417e-8494-90250057f3aa",
+    "service": "interaction-service",
+    "action": "issue_commented",
+    "userId": "usr-student-a",
+    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
+    "details": {
+      "contentLength": 4
+    },
+    "createdAt": "2026-03-19T13:50:52.876Z"
+  },
+  {
+    "_id": "c6e2c691-b5ed-4457-8a07-8427d68b9667",
+    "service": "issue-service",
+    "action": "issue_support_count_changed",
+    "userId": null,
+    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
+    "details": {
+      "delta": 1,
+      "supportCount": 1
+    },
+    "createdAt": "2026-03-19T13:50:55.097Z"
+  },
+  {
+    "_id": "eb9aad28-dbef-4e8d-8e40-0f8464b5f3a4",
+    "service": "interaction-service",
+    "action": "issue_supported",
+    "userId": "usr-student-a",
+    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
+    "details": {
+      "type": "support"
+    },
+    "createdAt": "2026-03-19T13:50:55.104Z"
+  },
+  {
+    "_id": "5beab836-d33b-41c5-b232-e348ba1ad444",
+    "service": "issue-service",
+    "action": "issue_support_count_changed",
+    "userId": null,
+    "issueId": "iss-004",
+    "details": {
+      "delta": 1,
+      "supportCount": 1
+    },
+    "createdAt": "2026-03-19T13:51:17.226Z"
+  },
+  {
+    "_id": "370223df-fee4-4b7d-87b2-ebc2d2b523d9",
+    "service": "interaction-service",
+    "action": "issue_supported",
+    "userId": "usr-student-a",
+    "issueId": "iss-004",
+    "details": {
+      "type": "support"
+    },
+    "createdAt": "2026-03-19T13:51:17.227Z"
+  },
+  {
+    "_id": "49883742-af8a-413d-b490-ab28c78efbeb",
+    "service": "issue-service",
+    "action": "issue_support_count_changed",
+    "userId": null,
+    "issueId": "iss-003",
+    "details": {
+      "delta": 1,
+      "supportCount": 2
+    },
+    "createdAt": "2026-03-19T13:51:19.666Z"
+  },
+  {
+    "_id": "b11ef66c-3ad2-401f-9b5d-8c7704469481",
+    "service": "interaction-service",
+    "action": "issue_supported",
+    "userId": "usr-student-a",
+    "issueId": "iss-003",
+    "details": {
+      "type": "support"
+    },
+    "createdAt": "2026-03-19T13:51:19.667Z"
+  },
+  {
+    "_id": "d2d04e50-bc21-4441-92cd-5d77a40b6c5d",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-student-a",
+    "issueId": "e0ee47d2-4861-4525-86b0-ed34c6a4bef8",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "wifi"
+      ],
+      "taggedAuthorityIds": [
+        "usr-teacher-acad"
+      ]
+    },
+    "createdAt": "2026-03-19T13:53:19.496Z"
+  },
+  {
+    "_id": "360bb786-c4d6-4b89-8bf3-44ce95d507af",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-student-a",
+    "issueId": null,
+    "details": {
+      "email": "asha@student.local"
+    },
+    "createdAt": "2026-03-19T13:55:56.725Z"
+  },
+  {
+    "_id": "57cfb67d-eeb7-4008-964c-e48a73370219",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-student-a",
+    "issueId": "6f0ae6a0-36d9-466f-9819-ca0512df7317",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "image",
+        "test"
+      ],
+      "taggedAuthorityIds": []
+    },
+    "createdAt": "2026-03-19T13:55:56.895Z"
+  },
+  {
+    "_id": "1b598c49-7b00-4eba-a43a-e9e7ec179976",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-student-a",
+    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "wifi"
+      ],
+      "taggedAuthorityIds": [
+        "usr-admin"
+      ]
+    },
+    "createdAt": "2026-03-19T13:58:54.887Z"
+  },
+  {
+    "_id": "cdb8817a-9229-4dbd-a21e-c62d3d746dd7",
+    "service": "user-service",
+    "action": "login",
+    "userId": "usr-admin",
+    "issueId": null,
+    "details": {
+      "email": "admin@campus.local"
+    },
+    "createdAt": "2026-03-19T13:59:03.975Z"
+  },
+  {
+    "_id": "1eb79734-482e-46b0-9c22-c77fd658c705",
+    "service": "issue-service",
+    "action": "issue_support_count_changed",
+    "userId": null,
+    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
+    "details": {
+      "delta": 1,
+      "supportCount": 1
+    },
+    "createdAt": "2026-03-19T13:59:42.851Z"
+  },
+  {
+    "_id": "b139ee19-ec60-4b04-9003-341988308a30",
+    "service": "interaction-service",
+    "action": "issue_supported",
+    "userId": "usr-admin",
+    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
+    "details": {
+      "type": "support"
+    },
+    "createdAt": "2026-03-19T13:59:42.864Z"
+  },
+  {
+    "_id": "75dd7875-a60f-4565-b151-d8b9a289b49a",
+    "service": "issue-service",
+    "action": "issue_escalated",
+    "userId": null,
+    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
+    "details": {
+      "escalationLevel": 2,
+      "assignedTo": "usr-hod"
+    },
+    "createdAt": "2026-03-19T13:59:46.890Z"
+  },
+  {
+    "_id": "9dff6727-4c25-4289-87d1-3645df636adb",
+    "service": "escalation-service",
+    "action": "issue_escalated",
+    "userId": "usr-admin",
+    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
+    "details": {
+      "previousLevel": 1,
+      "newLevel": 2,
+      "assignedTo": "usr-hod"
+    },
+    "createdAt": "2026-03-19T13:59:46.897Z"
+  },
+  {
+    "_id": "61476a43-8cb0-4b5e-bec6-2ab230826fe1",
+    "service": "issue-service",
+    "action": "issue_created",
+    "userId": "usr-admin",
+    "issueId": "2f5ad56d-d06a-4472-bb93-22ce3f348a89",
+    "details": {
+      "sectionId": "sec-academics",
+      "tags": [
+        "attendance"
+      ],
+      "taggedAuthorityIds": [
+        "usr-teacher-acad",
+        "usr-management"
+      ]
+    },
+    "createdAt": "2026-03-19T14:13:06.392Z"
+  },
+  {
+    "_id": "58e52f06-1ccd-42e2-83ea-63fd508598ab",
+    "service": "issue-service",
+    "action": "issue_status_updated",
+    "userId": null,
+    "issueId": "iss-006",
+    "details": {
+      "status": "Resolved"
+    },
+    "createdAt": "2026-03-19T14:14:25.231Z"
+  },
+  {
+    "_id": "f12b86a6-1ad6-44a5-95ab-d13307a5f812",
+    "service": "status-service",
+    "action": "admin_status_updated",
+    "userId": "usr-admin",
+    "issueId": "iss-006",
+    "details": {
+      "previousStatus": "Escalated",
+      "newStatus": "Resolved"
+    },
+    "createdAt": "2026-03-19T14:14:25.235Z"
+  },
+  {
+    "_id": "8febc578-9542-4464-8d8c-9ca90745adf5",
+    "service": "issue-service",
+    "action": "issue_status_updated",
+    "userId": null,
+    "issueId": "iss-002",
+    "details": {
+      "status": "Resolved"
+    },
+    "createdAt": "2026-03-19T14:14:38.490Z"
+  },
+  {
+    "_id": "8ced15ac-031b-479e-8a7d-e3885325e4e0",
+    "service": "status-service",
+    "action": "admin_status_updated",
+    "userId": "usr-admin",
+    "issueId": "iss-002",
+    "details": {
+      "previousStatus": "Escalated",
+      "newStatus": "Resolved"
+    },
+    "createdAt": "2026-03-19T14:14:38.492Z"
+  }
+]

@@ -96,6 +96,12 @@ npm run seed:demo
 
 This resets service JSON storage with a realistic demo dataset (users, sections, issues, interactions, evidence).
 
+If you are running in Mongo mode, load that dataset into Mongo after seeding JSON:
+
+```bash
+npm run seed:mongo
+```
+
 ## Default Seed Users
 
 - Admin: `admin@campus.local` / `password123`
@@ -159,3 +165,51 @@ This resets service JSON storage with a realistic demo dataset (users, sections,
 - Local persistence uses JSON files in `services/data` for easy demo.
 - `npm run dev` and `npm run dev:services` are configured to stay up even if one child process exits unexpectedly, so the rest of the stack remains available while you debug the failing service.
 - If needed on Windows, run `npm run dev:services` and `npm run dev:frontend` in separate terminals to isolate the failing process quickly.
+
+## MongoDB Mode
+
+The shared store supports two modes:
+
+- `file` (default): JSON files in `services/data`
+- `mongo`: MongoDB-backed storage for all services
+
+To run with MongoDB locally (without Docker), set:
+
+```bash
+set STORE_MODE=mongo
+set MONGO_URI=mongodb://localhost:27017/campus_issue
+npm run dev
+```
+
+If services are already running when you import data using `npm run seed:mongo`, restart the services once so their in-memory caches reload from Mongo.
+
+## Run with Docker
+
+The repository includes:
+
+- `Dockerfile`
+- `docker-compose.yml`
+
+### Start full stack (Mongo + all services + gateway + frontend)
+
+```bash
+docker compose up --build
+```
+
+### URLs
+
+- Frontend: `http://localhost:5173`
+- Gateway/API: `http://localhost:5000`
+- MongoDB: `mongodb://localhost:27017/campus_issue`
+
+### Stop stack
+
+```bash
+docker compose down
+```
+
+### Stop and remove Mongo volume
+
+```bash
+docker compose down -v
+```

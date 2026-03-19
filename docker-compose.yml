@@ -1,0 +1,148 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: campus-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  user-service:
+    build: .
+    command: node services/user-service/server.js
+    environment:
+      STORE_MODE: mongo
+      MONGO_URI: mongodb://mongo:27017/campus_issue
+      USER_SERVICE_PORT: 5001
+    depends_on:
+      - mongo
+    ports:
+      - "5001:5001"
+
+  section-service:
+    build: .
+    command: node services/section-service/server.js
+    environment:
+      STORE_MODE: mongo
+      MONGO_URI: mongodb://mongo:27017/campus_issue
+      SECTION_SERVICE_PORT: 5002
+    depends_on:
+      - mongo
+    ports:
+      - "5002:5002"
+
+  issue-service:
+    build: .
+    command: node services/issue-service/server.js
+    environment:
+      STORE_MODE: mongo
+      MONGO_URI: mongodb://mongo:27017/campus_issue
+      ISSUE_SERVICE_PORT: 5003
+      USER_SERVICE_URL: http://user-service:5001
+    depends_on:
+      - mongo
+      - user-service
+    ports:
+      - "5003:5003"
+
+  interaction-service:
+    build: .
+    command: node services/interaction-service/server.js
+    environment:
+      STORE_MODE: mongo
+      MONGO_URI: mongodb://mongo:27017/campus_issue
+      INTERACTION_SERVICE_PORT: 5004
+      ISSUE_SERVICE_URL: http://issue-service:5003
+    depends_on:
+      - mongo
+      - issue-service
+    ports:
+      - "5004:5004"
+
+  evidence-service:
+    build: .
+    command: node services/evidence-service/server.js
+    environment:
+      STORE_MODE: mongo
+      MONGO_URI: mongodb://mongo:27017/campus_issue
+      EVIDENCE_SERVICE_PORT: 5005
+    depends_on:
+      - mongo
+    ports:
+      - "5005:5005"
+
+  escalation-service:
+    build: .
+    command: node services/escalation-service/server.js
+    environment:
+      ESCALATION_SERVICE_PORT: 5006
+      ISSUE_SERVICE_URL: http://issue-service:5003
+      USER_SERVICE_URL: http://user-service:5001
+    depends_on:
+      - issue-service
+      - user-service
+    ports:
+      - "5006:5006"
+
+  status-service:
+    build: .
+    command: node services/status-service/server.js
+    environment:
+      STATUS_SERVICE_PORT: 5007
+      ISSUE_SERVICE_URL: http://issue-service:5003
+    depends_on:
+      - issue-service
+    ports:
+      - "5007:5007"
+
+  analytics-service:
+    build: .
+    command: node services/analytics-service/server.js
+    environment:
+      ANALYTICS_SERVICE_PORT: 5008
+      ISSUE_SERVICE_URL: http://issue-service:5003
+      SECTION_SERVICE_URL: http://section-service:5002
+    depends_on:
+      - issue-service
+      - section-service
+    ports:
+      - "5008:5008"
+
+  gateway:
+    build: .
+    command: node services/gateway/server.js
+    environment:
+      GATEWAY_PORT: 5000
+      USER_SERVICE_URL: http://user-service:5001
+      SECTION_SERVICE_URL: http://section-service:5002
+      ISSUE_SERVICE_URL: http://issue-service:5003
+      INTERACTION_SERVICE_URL: http://interaction-service:5004
+      EVIDENCE_SERVICE_URL: http://evidence-service:5005
+      ESCALATION_SERVICE_URL: http://escalation-service:5006
+      STATUS_SERVICE_URL: http://status-service:5007
+      ANALYTICS_SERVICE_URL: http://analytics-service:5008
+    depends_on:
+      - user-service
+      - section-service
+      - issue-service
+      - interaction-service
+      - evidence-service
+      - escalation-service
+      - status-service
+      - analytics-service
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: .
+    command: npm --prefix frontend run dev -- --host 0.0.0.0 --port 5173
+    depends_on:
+      - gateway
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+    ports:
+      - "5173:5173"
+
+volumes:
+  mongo_data:

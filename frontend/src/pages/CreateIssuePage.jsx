@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import API from '../services/api';
@@ -18,6 +18,15 @@ export default function CreateIssuePage() {
     imageName: '',
     isAnonymous: false,
   });
+
+  const draftImpactScore = useMemo(() => {
+    const titleWeight = form.title.trim().length > 12 ? 30 : form.title.trim().length > 0 ? 15 : 0;
+    const descriptionWeight = form.description.trim().length > 80 ? 35 : form.description.trim().length > 0 ? 15 : 0;
+    const tagsWeight = form.tagsInput.split(',').map((item) => item.trim()).filter(Boolean).length > 1 ? 15 : 5;
+    const authorityWeight = form.taggedAuthorityIds.length > 0 ? 12 : 0;
+    const evidenceWeight = form.imageUrl ? 8 : 0;
+    return Math.min(100, titleWeight + descriptionWeight + tagsWeight + authorityWeight + evidenceWeight);
+  }, [form.title, form.description, form.tagsInput, form.taggedAuthorityIds.length, form.imageUrl]);
 
   useEffect(() => {
     Promise.all([API.get('/sections'), API.get('/users/taggable')])
@@ -89,6 +98,14 @@ export default function CreateIssuePage() {
           <p className="hint">Clear details = faster resolution.</p>
         </div>
 
+        <div className="create-highlight">
+          <div>
+            <span className="hint">Draft quality</span>
+            <strong>{draftImpactScore}%</strong>
+          </div>
+          <p className="hint">High quality reports with context and evidence are solved faster.</p>
+        </div>
+
         <div className="create-step">
           <span className="step-badge">1</span>
           <div>
@@ -117,24 +134,38 @@ export default function CreateIssuePage() {
           </div>
         </div>
 
+        <div className="create-inspo-row">
+          {['Where exactly?', 'When did it start?', 'How many students affected?'].map((tip) => (
+            <span key={tip} className="chip subtle">{tip}</span>
+          ))}
+        </div>
+
         <label>Tags (comma separated)</label>
         <input value={form.tagsInput} onChange={(event) => setForm((prev) => ({ ...prev, tagsInput: event.target.value }))} placeholder="wifi, attendance" />
 
         <label>Issue Image (optional)</label>
-        <input type="file" accept="image/*" onChange={onImageSelect} />
-        {form.imageUrl && (
-          <div className="upload-preview">
-            <img src={form.imageUrl} alt="Issue preview" className="issue-image" />
-            <p className="hint">{form.imageName}</p>
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={() => setForm((prev) => ({ ...prev, imageUrl: '', imageName: '' }))}
-            >
-              Remove image
-            </button>
-          </div>
-        )}
+        <div className="create-media-shell">
+          <label className="create-media-picker">
+            <input type="file" accept="image/*" onChange={onImageSelect} />
+            <span>{form.imageUrl ? 'Replace image' : 'Add image'}</span>
+          </label>
+          {form.imageUrl && (
+            <div className="upload-preview create-media-preview">
+              <img src={form.imageUrl} alt="Issue preview" className="issue-image" />
+              <p className="hint">{form.imageName}</p>
+              <button
+                type="button"
+                className="btn btn-light"
+                onClick={() => setForm((prev) => ({ ...prev, imageUrl: '', imageName: '' }))}
+              >
+                Remove image
+              </button>
+            </div>
+          )}
+          {!form.imageUrl && (
+            <p className="hint">Tip: image proof usually increases trust and faster resolution.</p>
+          )}
+        </div>
 
         <label className="anonymous-toggle">
           <input
@@ -144,6 +175,8 @@ export default function CreateIssuePage() {
           />
           <span>Post this issue anonymously for safety</span>
         </label>
+
+        {form.isAnonymous && <p className="hint create-anon-note">Your identity is hidden from other users and visible only to admins for safety governance.</p>}
 
         <div className="create-step">
           <span className="step-badge">3</span>
@@ -176,7 +209,10 @@ export default function CreateIssuePage() {
         </div>
 
         {error && <small className="error">{error}</small>}
-        <button className="btn" type="submit">Submit & Start Resolution</button>
+        <div className="create-submit-row">
+          <p className="hint">Ready to publish this as a community-impact issue?</p>
+          <button className="btn" type="submit">Submit & Start Resolution</button>
+        </div>
       </form>
     </AppLayout>
   );

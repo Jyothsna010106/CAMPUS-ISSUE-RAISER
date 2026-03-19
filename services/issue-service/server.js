@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { auth } = require('../common/auth');
-const { readJson, writeJson, createId } = require('../common/store');
+const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { requestJson } = require('../common/http');
 const { appendLog } = require('../common/logger');
 
@@ -183,7 +183,16 @@ app.patch('/issues/:id/escalate', (req, res) => {
   return res.json(issue);
 });
 
-const PORT = Number(process.env.ISSUE_SERVICE_PORT || 5003);
-app.listen(PORT, () => {
-  console.log(`Issue Service running on http://localhost:${PORT}`);
+const start = async () => {
+  await initStore();
+
+  const PORT = Number(process.env.ISSUE_SERVICE_PORT || 5003);
+  app.listen(PORT, () => {
+    console.log(`Issue Service running on http://localhost:${PORT}`);
+  });
+};
+
+start().catch((error) => {
+  console.error(`Issue Service startup failed: ${error.message}`);
+  process.exit(1);
 });

@@ -109,16 +109,22 @@ export default function IssueDetailPage() {
 
   return (
     <AppLayout title="Issue Detail">
-      <div className="panel">
-        <h3>{issue.title}</h3>
-        <p className="hint">
-          By {issue.isAnonymous && issue.createdBy !== me?._id && me?.role !== 'admin'
-            ? 'Anonymous Reporter'
-            : (directoryNameMap[issue.createdBy] || 'Unknown Reporter')}
-        </p>
+      <div className="panel issue-spotlight">
+        <div className="issue-spotlight-head">
+          <div>
+            <h3>{issue.title}</h3>
+            <p className="hint">
+              By {issue.isAnonymous && issue.createdBy !== me?._id && me?.role !== 'admin'
+                ? 'Anonymous Reporter'
+                : (directoryNameMap[issue.createdBy] || 'Unknown Reporter')}
+            </p>
+          </div>
+          <span className={`status-pill ${issue.status.toLowerCase().replace(/\s+/g, '-')}`}>{issue.status}</span>
+        </div>
+
         <p>{issue.description}</p>
         {issue.imageUrl && <img src={issue.imageUrl} alt={issue.title} className="issue-image" />}
-        <div className="meta-row"><span>Status: {issue.status}</span><span>Support: {issue.supportCount}</span></div>
+        <div className="meta-row"><span>Support: {issue.supportCount}</span></div>
         <div className="meta-row"><span>Escalation Level: {issue.escalationLevel}</span><span>Assigned Authority: {issue.assignedTo || 'Unassigned'}</span></div>
         <p>Tags: {issue.tags?.length ? issue.tags.join(', ') : 'None'}</p>
         <p>Tagged Authorities: {issue.taggedAuthorityIds?.length ? issue.taggedAuthorityIds.join(', ') : 'None'}</p>
@@ -164,9 +170,18 @@ export default function IssueDetailPage() {
 
       <div className="grid two">
         <div className="panel">
-          <h3>Comments</h3>
+          <h3>Comments Feed</h3>
           {comments.map((item) => (
-            <div key={item._id} className="list-row"><strong>{directoryNameMap[item.userId] || item.userId}</strong><p>{item.content}</p></div>
+            <article key={item._id} className="comment-post-card comment-post-card-detail">
+              <div className="comment-post-head">
+                <div className="comment-post-avatar">{(directoryNameMap[item.userId] || item.userId).charAt(0).toUpperCase()}</div>
+                <div>
+                  <strong>{directoryNameMap[item.userId] || item.userId}</strong>
+                  <p>{item.createdAt ? new Date(item.createdAt).toLocaleString() : 'Just now'}</p>
+                </div>
+              </div>
+              <p className="comment-post-body">{item.content}</p>
+            </article>
           ))}
           {!comments.length && <p>No comments yet.</p>}
         </div>
@@ -174,11 +189,17 @@ export default function IssueDetailPage() {
         <div className="panel">
           <h3>Evidence</h3>
           {evidence.map((item) => (
-            <div key={item._id} className="list-row">
-              <strong>{directoryNameMap[item.userId] || item.userId}</strong>
+            <article key={item._id} className="comment-post-card comment-post-card-detail">
+              <div className="comment-post-head">
+                <div className="comment-post-avatar">{(directoryNameMap[item.userId] || item.userId).charAt(0).toUpperCase()}</div>
+                <div>
+                  <strong>{directoryNameMap[item.userId] || item.userId}</strong>
+                  <p>{item.createdAt ? new Date(item.createdAt).toLocaleString() : 'Just now'}</p>
+                </div>
+              </div>
               {item.text && <p>{item.text}</p>}
               {item.fileUrl && <a href={item.fileUrl} target="_blank" rel="noreferrer">Open File</a>}
-            </div>
+            </article>
           ))}
           {!evidence.length && <p>No evidence submitted.</p>}
         </div>

@@ -128,6 +128,75 @@ export default function IssuesPage() {
       .slice(0, 5);
   }, [issues]);
 
+  const storyCards = useMemo(() => {
+    const cards = [];
+    const used = new Set();
+
+    const addCard = (issue, config) => {
+      if (!issue || used.has(issue._id)) return;
+      used.add(issue._id);
+      cards.push({
+        id: issue._id,
+        issue,
+        ...config,
+      });
+    };
+
+    const byLatest = [...issues].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const bySupport = [...issues].sort((a, b) => (b.supportCount || 0) - (a.supportCount || 0));
+    const unresolvedByAge = [...issues]
+      .filter((issue) => unresolved.includes(issue.status))
+      .sort((a, b) => daysSince(b.createdAt) - daysSince(a.createdAt));
+
+    const critical = highPressureIssues.find(({ pressure }) => pressure.label === 'Critical')?.issue;
+    const resolvedLatest = byLatest.find((issue) => issue.status === 'Resolved');
+    const fresh = byLatest[0];
+    const mostSupported = bySupport.find((issue) => (issue.supportCount || 0) > 0);
+    const neglected = unresolvedByAge.find((issue) => daysSince(issue.createdAt) >= 3);
+
+    addCard(critical, {
+      variant: 'critical',
+      icon: '🔥',
+      kicker: 'Hot Right Now',
+      metric: `L${critical?.escalationLevel || 1}`,
+      tab: 'Pending',
+    });
+
+    addCard(mostSupported, {
+      variant: 'support',
+      icon: '❤️',
+      kicker: 'Most Supported',
+      metric: `${mostSupported?.supportCount || 0} supports`,
+      tab: 'Trending',
+    });
+
+    addCard(fresh, {
+      variant: 'fresh',
+      icon: '✨',
+      kicker: 'Fresh Report',
+      metric: `${daysSince(fresh?.createdAt)}d old`,
+      tab: 'Latest',
+    });
+
+    addCard(neglected, {
+      variant: 'neglect',
+      icon: '⏳',
+      kicker: 'Needs Rescue',
+      metric: `${daysSince(neglected?.createdAt)}d waiting`,
+      tab: 'Pending',
+    });
+
+    addCard(resolvedLatest, {
+      variant: 'win',
+      icon: '🏆',
+      kicker: 'Resolved Win',
+      metric: 'Success story',
+      tab: 'Resolved',
+    });
+
+    return cards.slice(0, 5);
+  }, [issues, highPressureIssues]);
+
   const feedStats = useMemo(() => {
     const total = issues.length;
     const resolved = issues.filter((issue) => issue.status === 'Resolved').length;
@@ -261,6 +330,10 @@ export default function IssuesPage() {
         <div>
           <h3>Hi {me?.name?.split(' ')[0] || 'there'} 👋</h3>
           <p className="hint">Your voice matters. Keep reports clear, calm, and specific for faster action.</p>
+          <div className="impact-ribbon">
+            <strong>Campus Pulse Live</strong>
+            <span>{feedStats.total} active stories · {feedStats.resolved} resolved wins</span>
+          </div>
         </div>
         <div className="feed-hero-stats">
           <div><strong>{feedStats.pending}</strong><span>Pending</span></div>
@@ -284,7 +357,33 @@ export default function IssuesPage() {
         <div className="search-wrap">
           <input placeholder="Search issues, tags, sections" value={search} onChange={(event) => setSearch(event.target.value)} />
         </div>
+        <div className="feed-top-kicker">
+          <span>Impact Feed</span>
+          <strong>{feed.length}</strong>
+        </div>
         <Link className="btn" to="/issues/new">Create Issue</Link>
+      </div>
+
+      <div className="panel story-rail">
+        <h3>Campus Stories</h3>
+        <div className="story-list">
+          {storyCards.map((card) => (
+            <button
+              key={card.id}
+              className={`story-item variant-${card.variant}`}
+              onClick={() => {
+                setActiveTab(card.tab || 'Latest');
+                setActiveTag(card.issue.tags?.[0] || '');
+              }}
+            >
+              <span className="story-ring">{card.icon}</span>
+              <p className="story-kicker">{card.kicker}</p>
+              <strong>{card.issue.title.slice(0, 26)}{card.issue.title.length > 26 ? '…' : ''}</strong>
+              <small>{card.metric}</small>
+            </button>
+          ))}
+          {!storyCards.length && <p className="hint">No stories yet.</p>}
+        </div>
       </div>
 
       <div className="tabs twitter-tabs">
@@ -315,22 +414,32 @@ export default function IssuesPage() {
         const affected = (issue.supportCount || 0) + 1;
 
         return (
-          <article key={issue._id} className="feed-card">
-            <div className="feed-avatar">{issue.title.charAt(0).toUpperCase()}</div>
+          <article key={issue._id} className="feed-card insta-post">
             <div className="feed-main">
-              <div className="feed-card-head">
-                <h3>{issue.title}</h3>
+              <div className="post-head">
+                <div className="post-user">
+                  <div className="post-user-avatar">{creatorLabel.charAt(0).toUpperCase()}</div>
+                  <div>
+                    <strong>{creatorLabel}</strong>
+                    <p>{sectionName} · {new Date(issue.createdAt).toLocaleDateString()}</p>
+                  </div>
+                </div>
                 <span className={`status-pill ${issue.status.toLowerCase().replace(/\s+/g, '-')}`}>{issue.status}</span>
               </div>
 
-              <p className="hint">By {creatorLabel} · {new Date(issue.createdAt).toLocaleDateString()}</p>
+              <div className="feed-card-head">
+                <h3>{issue.title}</h3>
+              </div>
 
               <p className="feed-body">{issue.description}</p>
 
-              {issue.imageUrl && <img src={issue.imageUrl} alt={issue.title} className="issue-image" />}
+              {issue.imageUrl && (
+                <div className="post-media-frame">
+                  <img src={issue.imageUrl} alt={issue.title} className="issue-image" />
+                </div>
+              )}
 
               <div className="meta-row compact">
-                <span>{sectionName}</span>
                 <span>Support {issue.supportCount}</span>
                 <span>{pressure.label} Pressure</span>
                 <span>L{issue.escalationLevel}</span>
@@ -351,17 +460,40 @@ export default function IssuesPage() {
                 ))}
               </div>
 
-              <div className="actions-inline">
-                <button className="ghost-action" onClick={() => supportIssue(issue._id)} disabled={hasSupported}>
-                  {hasSupported ? 'Supported' : 'Support'}
+              <div className="post-action-row">
+                <button
+                  className={`post-action-btn ${hasSupported ? 'active' : ''}`}
+                  onClick={() => supportIssue(issue._id)}
+                  disabled={hasSupported}
+                  aria-label={hasSupported ? 'Supported' : 'Support'}
+                >
+                  <span className="post-action-icon">{hasSupported ? '❤' : '♡'}</span>
+                  <span className="post-action-label">Support</span>
+                  <small>{issue.supportCount}</small>
                 </button>
-                <button className="ghost-action" onClick={() => setOpenCommentFor(openCommentFor === issue._id ? '' : issue._id)}>
-                  Reply ({comments.length})
+                <button
+                  className={`post-action-btn ${openCommentFor === issue._id ? 'active' : ''}`}
+                  onClick={() => setOpenCommentFor(openCommentFor === issue._id ? '' : issue._id)}
+                  aria-label="Reply"
+                >
+                  <span className="post-action-icon">💬</span>
+                  <span className="post-action-label">Reply</span>
+                  <small>{comments.length}</small>
                 </button>
-                <button className="ghost-action" onClick={() => setOpenMenuFor(openMenuFor === issue._id ? '' : issue._id)}>
-                  More
+                <button
+                  className={`post-action-btn ${openMenuFor === issue._id ? 'active' : ''}`}
+                  onClick={() => setOpenMenuFor(openMenuFor === issue._id ? '' : issue._id)}
+                  aria-label="More actions"
+                >
+                  <span className="post-action-icon">⋯</span>
+                  <span className="post-action-label">More</span>
+                  <small>Tools</small>
                 </button>
-                <Link className="ghost-action" to={`/issues/${issue._id}`}>Open</Link>
+                <Link className="post-action-btn" to={`/issues/${issue._id}`} aria-label="Open issue detail">
+                  <span className="post-action-icon">↗</span>
+                  <span className="post-action-label">Open</span>
+                  <small>Detail</small>
+                </Link>
               </div>
 
               {openMenuFor === issue._id && (
@@ -373,20 +505,30 @@ export default function IssuesPage() {
 
               {openCommentFor === issue._id && (
                 <div className="thread-box">
+                  <div className="thread-head">
+                    <h4>Discussion</h4>
+                    <span>{comments.length} posts</span>
+                  </div>
                   {comments.map((comment) => (
-                    <div key={comment._id} className="mini-item">
-                      <strong>{directoryNameMap[comment.userId] || comment.userId}</strong>
-                      <p>{comment.content}</p>
-                    </div>
+                    <article key={comment._id} className="comment-post-card">
+                      <div className="comment-post-head">
+                        <div className="comment-post-avatar">{(directoryNameMap[comment.userId] || comment.userId).charAt(0).toUpperCase()}</div>
+                        <div>
+                          <strong>{directoryNameMap[comment.userId] || comment.userId}</strong>
+                          <p>{comment.createdAt ? new Date(comment.createdAt).toLocaleString() : 'Just now'}</p>
+                        </div>
+                      </div>
+                      <p className="comment-post-body">{comment.content}</p>
+                    </article>
                   ))}
                   {!comments.length && <p className="hint">No comments yet.</p>}
                   <div className="compose-row">
                     <input
-                      placeholder="Write a reply"
+                      placeholder="Write a reply that moves this issue forward"
                       value={commentInput[issue._id] || ''}
                       onChange={(event) => setCommentInput((prev) => ({ ...prev, [issue._id]: event.target.value }))}
                     />
-                    <button className="btn" onClick={() => addComment(issue._id)}>Post</button>
+                    <button className="btn" onClick={() => addComment(issue._id)}>Post Update</button>
                   </div>
                 </div>
               )}

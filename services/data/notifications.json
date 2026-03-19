@@ -9,7 +9,7 @@
     "actorId": "usr-student-a",
     "issueId": "iss-001",
     "isRead": false,
-    "createdAt": "2026-03-16T13:44:09.476Z"
+    "createdAt": "2026-03-16T17:56:20.730Z"
   },
   {
     "_id": "not-002",
@@ -21,78 +21,6 @@
     "actorId": "usr-student-c",
     "issueId": "iss-005",
     "isRead": true,
-    "createdAt": "2026-03-17T13:44:09.476Z"
-  },
-  {
-    "_id": "936b5b03-720f-4c76-ba44-b39736ce393d",
-    "recipientId": "usr-teacher-acad",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "Asha Student tagged you in \"Anonymous safety issue smoke\"",
-    "link": "/issues/0ca1ffd2-9b33-4275-9a56-a92a45e0213e",
-    "actorId": "usr-student-a",
-    "issueId": "0ca1ffd2-9b33-4275-9a56-a92a45e0213e",
-    "isRead": false,
-    "createdAt": "2026-03-19T13:45:36.254Z"
-  },
-  {
-    "_id": "5b59464d-c65c-46cf-8640-1ec6daa551e2",
-    "recipientId": "usr-dean",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "Asha Student tagged you in \"chair problem\"",
-    "link": "/issues/785221f2-99b8-4e39-a6ab-fa3948f9e096",
-    "actorId": "usr-student-a",
-    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
-    "isRead": false,
-    "createdAt": "2026-03-19T13:50:43.335Z"
-  },
-  {
-    "_id": "12ae0227-80d0-46fb-8c8c-1be4cf20b8a1",
-    "recipientId": "usr-teacher-acad",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "Asha Student tagged you in \"power issue\"",
-    "link": "/issues/e0ee47d2-4861-4525-86b0-ed34c6a4bef8",
-    "actorId": "usr-student-a",
-    "issueId": "e0ee47d2-4861-4525-86b0-ed34c6a4bef8",
-    "isRead": false,
-    "createdAt": "2026-03-19T13:53:19.501Z"
-  },
-  {
-    "_id": "acadfa2f-174c-46af-adc6-0ce69406e179",
-    "recipientId": "usr-admin",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "Asha Student tagged you in \"image test\"",
-    "link": "/issues/7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
-    "actorId": "usr-student-a",
-    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
-    "isRead": true,
-    "createdAt": "2026-03-19T13:58:54.907Z"
-  },
-  {
-    "_id": "63bd2029-0fc5-4cae-a865-6b72efb7d774",
-    "recipientId": "usr-teacher-acad",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "System Admin tagged you in \"bad teaching skiils\"",
-    "link": "/issues/2f5ad56d-d06a-4472-bb93-22ce3f348a89",
-    "actorId": "usr-admin",
-    "issueId": "2f5ad56d-d06a-4472-bb93-22ce3f348a89",
-    "isRead": false,
-    "createdAt": "2026-03-19T14:13:06.399Z"
-  },
-  {
-    "_id": "91f038d2-9bdb-4187-93d8-2358f6f8ccc9",
-    "recipientId": "usr-management",
-    "type": "issue_tagged",
-    "title": "You were tagged in an issue",
-    "message": "System Admin tagged you in \"bad teaching skiils\"",
-    "link": "/issues/2f5ad56d-d06a-4472-bb93-22ce3f348a89",
-    "actorId": "usr-admin",
-    "issueId": "2f5ad56d-d06a-4472-bb93-22ce3f348a89",
-    "isRead": false,
-    "createdAt": "2026-03-19T14:13:06.399Z"
+    "createdAt": "2026-03-17T17:56:20.730Z"
   }
 ]

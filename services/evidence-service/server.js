@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { auth } = require('../common/auth');
-const { readJson, writeJson, createId } = require('../common/store');
+const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { appendLog } = require('../common/logger');
 
 const app = express();
@@ -38,7 +38,16 @@ app.get('/evidence/:issueId', auth, (req, res) => {
   return res.json(records);
 });
 
-const PORT = Number(process.env.EVIDENCE_SERVICE_PORT || 5005);
-app.listen(PORT, () => {
-  console.log(`Evidence Service running on http://localhost:${PORT}`);
+const start = async () => {
+  await initStore();
+
+  const PORT = Number(process.env.EVIDENCE_SERVICE_PORT || 5005);
+  app.listen(PORT, () => {
+    console.log(`Evidence Service running on http://localhost:${PORT}`);
+  });
+};
+
+start().catch((error) => {
+  console.error(`Evidence Service startup failed: ${error.message}`);
+  process.exit(1);
 });

@@ -3,7 +3,7 @@
     "_id": "usr-admin",
     "name": "System Admin",
     "email": "admin@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "admin",
     "department": "General"
   },
@@ -11,7 +11,7 @@
     "_id": "usr-teacher-acad",
     "name": "Academic Teacher",
     "email": "teacher@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "teacher",
     "department": "Academics"
   },
@@ -19,7 +19,7 @@
     "_id": "usr-teacher-hostel",
     "name": "Hostel Warden",
     "email": "warden@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "teacher",
     "department": "Hostel"
   },
@@ -27,7 +27,7 @@
     "_id": "usr-hod",
     "name": "Department HOD",
     "email": "hod@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "hod",
     "department": "Academics"
   },
@@ -35,7 +35,7 @@
     "_id": "usr-dean",
     "name": "Campus Dean",
     "email": "dean@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "dean",
     "department": "General"
   },
@@ -43,7 +43,7 @@
     "_id": "usr-management",
     "name": "Management Office",
     "email": "management@campus.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "management",
     "department": "General"
   },
@@ -51,7 +51,7 @@
     "_id": "usr-student-a",
     "name": "Asha Student",
     "email": "asha@student.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "student",
     "department": "Academics"
   },
@@ -59,7 +59,7 @@
     "_id": "usr-student-b",
     "name": "Rahul Student",
     "email": "rahul@student.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "student",
     "department": "Hostel"
   },
@@ -67,7 +67,7 @@
     "_id": "usr-student-c",
     "name": "Nisha Student",
     "email": "nisha@student.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "student",
     "department": "Transport"
   },
@@ -75,7 +75,7 @@
     "_id": "usr-student-d",
     "name": "Arjun Student",
     "email": "arjun@student.local",
-    "password": "$2b$10$q4QoeoMGQcl69do8Os8NIO6eU5l8guU23bDXxIeQE4zH08CKkrXnW",
+    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
     "role": "student",
     "department": "General"
   }

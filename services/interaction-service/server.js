@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { auth } = require('../common/auth');
-const { readJson, writeJson, createId } = require('../common/store');
+const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { requestJson } = require('../common/http');
 const { appendLog } = require('../common/logger');
 
@@ -79,7 +79,16 @@ app.get('/interactions/:issueId', auth, (req, res) => {
   return res.json(interactions);
 });
 
-const PORT = Number(process.env.INTERACTION_SERVICE_PORT || 5004);
-app.listen(PORT, () => {
-  console.log(`Interaction Service running on http://localhost:${PORT}`);
+const start = async () => {
+  await initStore();
+
+  const PORT = Number(process.env.INTERACTION_SERVICE_PORT || 5004);
+  app.listen(PORT, () => {
+    console.log(`Interaction Service running on http://localhost:${PORT}`);
+  });
+};
+
+start().catch((error) => {
+  console.error(`Interaction Service startup failed: ${error.message}`);
+  process.exit(1);
 });

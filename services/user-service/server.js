@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-const { readJson, writeJson, createId } = require('../common/store');
+const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { auth, signToken } = require('../common/auth');
 const { appendLog, getLogs } = require('../common/logger');
 
@@ -40,7 +40,15 @@ const seedUsers = () => {
   ]);
 };
 
-seedUsers();
+const start = async () => {
+  await initStore();
+  seedUsers();
+
+  const PORT = Number(process.env.USER_SERVICE_PORT || 5001);
+  app.listen(PORT, () => {
+    console.log(`User Service running on http://localhost:${PORT}`);
+  });
+};
 
 app.post('/auth/register', async (req, res) => {
   try {
@@ -224,7 +232,7 @@ app.get('/users/logs', auth, (req, res) => {
   return res.json(getLogs());
 });
 
-const PORT = Number(process.env.USER_SERVICE_PORT || 5001);
-app.listen(PORT, () => {
-  console.log(`User Service running on http://localhost:${PORT}`);
+start().catch((error) => {
+  console.error(`User Service startup failed: ${error.message}`);
+  process.exit(1);
 });

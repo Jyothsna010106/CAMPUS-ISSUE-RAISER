@@ -5,7 +5,7 @@
     "userId": "usr-student-a",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-15T13:44:09.476Z"
+    "createdAt": "2026-03-15T17:56:20.730Z"
   },
   {
     "_id": "int-002",
@@ -13,7 +13,7 @@
     "userId": "usr-student-b",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-15T13:44:09.476Z"
+    "createdAt": "2026-03-15T17:56:20.730Z"
   },
   {
     "_id": "int-003",
@@ -21,7 +21,7 @@
     "userId": "usr-student-b",
     "type": "comment",
     "content": "This also impacts final-year project demo prep.",
-    "createdAt": "2026-03-16T13:44:09.476Z"
+    "createdAt": "2026-03-16T17:56:20.730Z"
   },
   {
     "_id": "int-004",
@@ -29,7 +29,7 @@
     "userId": "usr-student-a",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-16T13:44:09.476Z"
+    "createdAt": "2026-03-16T17:56:20.730Z"
   },
   {
     "_id": "int-005",
@@ -37,7 +37,7 @@
     "userId": "usr-student-b",
     "type": "comment",
     "content": "No water between 6 AM and 9 AM.",
-    "createdAt": "2026-03-16T13:44:09.476Z"
+    "createdAt": "2026-03-16T17:56:20.730Z"
   },
   {
     "_id": "int-006",
@@ -45,7 +45,7 @@
     "userId": "usr-student-a",
     "type": "comment",
     "content": "Issue resolved after escalation.",
-    "createdAt": "2026-03-18T13:44:09.476Z"
+    "createdAt": "2026-03-18T17:56:20.730Z"
   },
   {
     "_id": "int-007",
@@ -53,7 +53,7 @@
     "userId": "usr-student-a",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-17T13:44:09.476Z"
+    "createdAt": "2026-03-17T17:56:20.730Z"
   },
   {
     "_id": "int-008",
@@ -61,7 +61,7 @@
     "userId": "usr-student-b",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-17T13:44:09.476Z"
+    "createdAt": "2026-03-17T17:56:20.730Z"
   },
   {
     "_id": "int-009",
@@ -69,7 +69,7 @@
     "userId": "usr-student-c",
     "type": "comment",
     "content": "Please release corrected timetable before weekend.",
-    "createdAt": "2026-03-17T13:44:09.476Z"
+    "createdAt": "2026-03-17T17:56:20.730Z"
   },
   {
     "_id": "int-010",
@@ -77,7 +77,7 @@
     "userId": "usr-student-a",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-14T13:44:09.476Z"
+    "createdAt": "2026-03-14T17:56:20.730Z"
   },
   {
     "_id": "int-011",
@@ -85,7 +85,7 @@
     "userId": "usr-student-b",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-14T13:44:09.476Z"
+    "createdAt": "2026-03-14T17:56:20.730Z"
   },
   {
     "_id": "int-012",
@@ -93,7 +93,7 @@
     "userId": "usr-student-c",
     "type": "support",
     "content": "",
-    "createdAt": "2026-03-15T13:44:09.476Z"
+    "createdAt": "2026-03-15T17:56:20.730Z"
   },
   {
     "_id": "int-013",
@@ -101,46 +101,6 @@
     "userId": "usr-student-d",
     "type": "comment",
     "content": "Photos from mess are uploaded as evidence.",
-    "createdAt": "2026-03-15T13:44:09.476Z"
-  },
-  {
-    "_id": "9afad79c-8a45-4af1-99c7-fc0372891de7",
-    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
-    "userId": "usr-student-a",
-    "type": "comment",
-    "content": "true",
-    "createdAt": "2026-03-19T13:50:52.875Z"
-  },
-  {
-    "_id": "a14e7fe0-9265-4153-ad62-ea091929ac4e",
-    "issueId": "785221f2-99b8-4e39-a6ab-fa3948f9e096",
-    "userId": "usr-student-a",
-    "type": "support",
-    "content": "",
-    "createdAt": "2026-03-19T13:50:55.048Z"
-  },
-  {
-    "_id": "157cb242-5b18-4ba7-99d7-dee0dbdb9c8c",
-    "issueId": "iss-004",
-    "userId": "usr-student-a",
-    "type": "support",
-    "content": "",
-    "createdAt": "2026-03-19T13:51:17.220Z"
-  },
-  {
-    "_id": "0efe81e7-8885-4cc5-93e2-ae14dbc4d4f9",
-    "issueId": "iss-003",
-    "userId": "usr-student-a",
-    "type": "support",
-    "content": "",
-    "createdAt": "2026-03-19T13:51:19.662Z"
-  },
-  {
-    "_id": "71ff2686-9367-4c65-a777-99d6b5b76833",
-    "issueId": "7d5e0b38-e1e1-4d91-9fa1-b2edd84db072",
-    "userId": "usr-admin",
-    "type": "support",
-    "content": "",
-    "createdAt": "2026-03-19T13:59:42.793Z"
+    "createdAt": "2026-03-15T17:56:20.730Z"
   }
 ]

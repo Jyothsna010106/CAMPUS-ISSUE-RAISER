@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { readJson, writeJson, createId } = require('../common/store');
+const { initStore, readJson, writeJson, createId } = require('../common/store');
 
 const app = express();
 app.use(cors());
@@ -20,13 +20,21 @@ const seedSections = () => {
   ]);
 };
 
-seedSections();
+const start = async () => {
+  await initStore();
+  seedSections();
+
+  const PORT = Number(process.env.SECTION_SERVICE_PORT || 5002);
+  app.listen(PORT, () => {
+    console.log(`Section Service running on http://localhost:${PORT}`);
+  });
+};
 
 app.get('/sections', (req, res) => {
   return res.json(readJson(SECTIONS_FILE, []));
 });
 
-const PORT = Number(process.env.SECTION_SERVICE_PORT || 5002);
-app.listen(PORT, () => {
-  console.log(`Section Service running on http://localhost:${PORT}`);
+start().catch((error) => {
+  console.error(`Section Service startup failed: ${error.message}`);
+  process.exit(1);
 });

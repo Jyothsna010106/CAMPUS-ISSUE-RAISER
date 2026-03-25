@@ -4,6 +4,7 @@ services:
     command: npm --prefix services/user-service run start
     environment:
       STORE_MODE: mongo
+      MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/user_service_db
       USER_SERVICE_MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/user_service_db
       USER_SERVICE_PORT: 5001
     ports:
@@ -14,6 +15,7 @@ services:
     command: npm --prefix services/section-service run start
     environment:
       STORE_MODE: mongo
+      MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/section_service_db
       SECTION_SERVICE_MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/section_service_db
       SECTION_SERVICE_PORT: 5002
     ports:
@@ -24,6 +26,7 @@ services:
     command: npm --prefix services/issue-service run start
     environment:
       STORE_MODE: mongo
+      MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/issue_service_db
       ISSUE_SERVICE_MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/issue_service_db
       ISSUE_SERVICE_PORT: 5003
       USER_SERVICE_URL: http://user-service:5001
@@ -37,6 +40,7 @@ services:
     command: npm --prefix services/interaction-service run start
     environment:
       STORE_MODE: mongo
+      MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/interaction_service_db
       INTERACTION_SERVICE_MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/interaction_service_db
       INTERACTION_SERVICE_PORT: 5004
       ISSUE_SERVICE_URL: http://issue-service:5003
@@ -50,6 +54,7 @@ services:
     command: npm --prefix services/evidence-service run start
     environment:
       STORE_MODE: mongo
+      MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/evidence_service_db
       EVIDENCE_SERVICE_MONGO_URI: mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/evidence_service_db
       EVIDENCE_SERVICE_PORT: 5005
     ports:

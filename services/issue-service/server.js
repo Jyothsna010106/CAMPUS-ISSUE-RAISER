@@ -5,6 +5,11 @@ const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { requestJson } = require('../common/http');
 const { appendLog } = require('../common/logger');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.ISSUE_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/issue_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: '8mb' }));
@@ -181,6 +186,10 @@ app.patch('/issues/:id/escalate', (req, res) => {
   writeJson(ISSUES_FILE, issues);
   appendLog({ service: 'issue-service', action: 'issue_escalated', issueId: issue._id, details: { escalationLevel, assignedTo } });
   return res.json(issue);
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'issue-service' });
 });
 
 const start = async () => {

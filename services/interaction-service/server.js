@@ -5,6 +5,11 @@ const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { requestJson } = require('../common/http');
 const { appendLog } = require('../common/logger');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.INTERACTION_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/interaction_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -77,6 +82,10 @@ app.get('/interactions/:issueId', auth, (req, res) => {
   const issueId = req.params.issueId;
   const interactions = readJson(INTERACTIONS_FILE, []).filter((item) => item.issueId === issueId);
   return res.json(interactions);
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'interaction-service' });
 });
 
 const start = async () => {

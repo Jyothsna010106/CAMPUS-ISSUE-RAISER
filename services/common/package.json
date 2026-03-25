@@ -1,0 +1,17 @@
+{
+  "name": "@campus/common",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "auth.js",
+  "exports": {
+    "./auth": "./auth.js",
+    "./http": "./http.js",
+    "./logger": "./logger.js",
+    "./store": "./store.js"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.1"
+  }
+}

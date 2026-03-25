@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 const dataDir = path.join(__dirname, '..', 'data');
 const cache = new Map();
 
-const storeMode = String(process.env.STORE_MODE || '').toLowerCase();
-const useMongo = storeMode === 'mongo' || Boolean(process.env.MONGO_URI);
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/campus_issue';
+const resolveStoreMode = () => String(process.env.STORE_MODE || '').toLowerCase();
+const resolveUseMongo = () => resolveStoreMode() === 'mongo' || Boolean(process.env.MONGO_URI);
+const resolveMongoUri = () => process.env.MONGO_URI || 'mongodb://localhost:27017/campus_issue';
 
 let initializedPromise = null;
 let StoreDocument = null;
@@ -37,6 +37,7 @@ const ensureStoreModel = () => {
 };
 
 const initStore = async () => {
+  const useMongo = resolveUseMongo();
   if (!useMongo) {
     return;
   }
@@ -47,6 +48,7 @@ const initStore = async () => {
 
   initializedPromise = (async () => {
     if (mongoose.connection.readyState === 0) {
+      const mongoUri = resolveMongoUri();
       await mongoose.connect(mongoUri);
       console.log(`[store] MongoDB connected: ${mongoUri}`);
     }
@@ -70,6 +72,7 @@ const ensureFile = (fileName, defaultData) => {
 };
 
 const readJson = (fileName, defaultData = []) => {
+  const useMongo = resolveUseMongo();
   if (cache.has(fileName)) {
     return clone(cache.get(fileName));
   }
@@ -87,6 +90,7 @@ const readJson = (fileName, defaultData = []) => {
 };
 
 const writeJson = (fileName, data) => {
+  const useMongo = resolveUseMongo();
   cache.set(fileName, clone(data));
 
   if (useMongo) {

@@ -1,82 +1,50 @@
 [
   {
-    "_id": "usr-admin",
+    "_id": "15466311-edc4-4a77-8140-478551e4ffdf",
     "name": "System Admin",
     "email": "admin@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "admin",
     "department": "General"
   },
   {
-    "_id": "usr-teacher-acad",
+    "_id": "14f9d1cc-e6a1-465f-91a6-536f3a404787",
     "name": "Academic Teacher",
     "email": "teacher@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "teacher",
     "department": "Academics"
   },
   {
-    "_id": "usr-teacher-hostel",
+    "_id": "e4370e01-d07f-4fd3-aed8-a4a940e0c82b",
     "name": "Hostel Warden",
     "email": "warden@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "teacher",
     "department": "Hostel"
   },
   {
-    "_id": "usr-hod",
+    "_id": "90351d15-be33-40e1-acea-24e5d20b7444",
     "name": "Department HOD",
     "email": "hod@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "hod",
     "department": "Academics"
   },
   {
-    "_id": "usr-dean",
-    "name": "Campus Dean",
+    "_id": "312315a9-85e5-43fb-8512-65e480e82c9c",
+    "name": "Dean Office",
     "email": "dean@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "dean",
     "department": "General"
   },
   {
-    "_id": "usr-management",
-    "name": "Management Office",
+    "_id": "0517c9f1-4bec-466c-971a-bb056a240bf2",
+    "name": "Campus Management",
     "email": "management@campus.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
+    "password": "$2b$10$Hy1Zb1WApo4oPMWH9a3Xl.JV2TNJyPqej4g/wjaLWvR2gp7ea8Lje",
     "role": "management",
-    "department": "General"
-  },
-  {
-    "_id": "usr-student-a",
-    "name": "Asha Student",
-    "email": "asha@student.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
-    "role": "student",
-    "department": "Academics"
-  },
-  {
-    "_id": "usr-student-b",
-    "name": "Rahul Student",
-    "email": "rahul@student.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
-    "role": "student",
-    "department": "Hostel"
-  },
-  {
-    "_id": "usr-student-c",
-    "name": "Nisha Student",
-    "email": "nisha@student.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
-    "role": "student",
-    "department": "Transport"
-  },
-  {
-    "_id": "usr-student-d",
-    "name": "Arjun Student",
-    "email": "arjun@student.local",
-    "password": "$2b$10$/6k/Fc7D5uuEgjDZFEpBuunTRBEPAdM2f.AvgSYOe1gy3xEih1XIC",
-    "role": "student",
     "department": "General"
   }
 ]

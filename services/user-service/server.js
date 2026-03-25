@@ -5,6 +5,11 @@ const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { auth, signToken } = require('../common/auth');
 const { appendLog, getLogs } = require('../common/logger');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.USER_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/user_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -230,6 +235,10 @@ app.get('/users/logs', auth, (req, res) => {
   }
 
   return res.json(getLogs());
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'user-service' });
 });
 
 start().catch((error) => {

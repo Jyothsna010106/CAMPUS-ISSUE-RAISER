@@ -4,6 +4,11 @@ const { auth } = require('../common/auth');
 const { initStore, readJson, writeJson, createId } = require('../common/store');
 const { appendLog } = require('../common/logger');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.EVIDENCE_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/evidence_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -36,6 +41,10 @@ app.post('/evidence', auth, (req, res) => {
 app.get('/evidence/:issueId', auth, (req, res) => {
   const records = readJson(EVIDENCE_FILE, []).filter((item) => item.issueId === req.params.issueId);
   return res.json(records);
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'evidence-service' });
 });
 
 const start = async () => {

@@ -4,6 +4,11 @@ const { auth } = require('../common/auth');
 const { requestJson } = require('../common/http');
 const { appendLog } = require('../common/logger');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.ESCALATION_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/escalation_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -47,6 +52,10 @@ app.put('/issues/:id/escalate', auth, async (req, res) => {
   } catch (error) {
     return res.status(error.status || 500).json(error.body || { error: 'Unable to escalate issue' });
   }
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'escalation-service' });
 });
 
 const PORT = Number(process.env.ESCALATION_SERVICE_PORT || 5006);

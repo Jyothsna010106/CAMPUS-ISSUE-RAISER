@@ -1,6 +1,6 @@
 [
   {
-    "_id": "sec-academics",
+    "_id": "845e16b2-f7b1-46a2-b775-0d41888dcd35",
     "name": "Academics",
     "subSections": [
       "CS",
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "_id": "sec-hostel",
+    "_id": "4e0266d3-1d2d-45c9-bfa8-af039d36d4d1",
     "name": "Hostel",
     "subSections": [
       "Boys Hostel",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "_id": "sec-transport",
+    "_id": "81a2f9fc-dee4-433f-92a9-8ee7d099ea67",
     "name": "Transport",
     "subSections": [
       "Route 1",
@@ -25,7 +25,7 @@
     ]
   },
   {
-    "_id": "sec-general",
+    "_id": "5e8035c1-feae-45ac-b63f-6f337ebe42f4",
     "name": "General",
     "subSections": []
   }

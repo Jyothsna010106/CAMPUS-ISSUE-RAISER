@@ -1,42 +1,13 @@
 [
   {
-    "_id": "log-001",
-    "service": "issue-service",
-    "action": "seed_issue_created",
-    "userId": "usr-student-a",
-    "issueId": "iss-001",
-    "details": {},
-    "createdAt": "2026-03-15T17:56:20.730Z"
-  },
-  {
-    "_id": "log-002",
-    "service": "interaction-service",
-    "action": "seed_issue_supported",
-    "userId": "usr-student-b",
-    "issueId": "iss-001",
-    "details": {},
-    "createdAt": "2026-03-15T17:56:20.730Z"
-  },
-  {
-    "_id": "log-003",
-    "service": "escalation-service",
-    "action": "seed_issue_escalated",
-    "userId": "usr-student-d",
-    "issueId": "iss-006",
-    "details": {
-      "level": 4
-    },
-    "createdAt": "2026-03-15T17:56:20.730Z"
-  },
-  {
-    "_id": "log-004",
-    "service": "status-service",
-    "action": "seed_admin_status_update",
+    "_id": "0fef29ba-75d9-4902-87b8-bdef72e1124b",
+    "service": "user-service",
+    "action": "login",
     "userId": "usr-admin",
-    "issueId": "iss-003",
+    "issueId": null,
     "details": {
-      "status": "Resolved"
+      "email": "admin@campus.local"
     },
-    "createdAt": "2026-03-18T17:56:20.730Z"
+    "createdAt": "2026-03-25T14:54:25.708Z"
   }
 ]

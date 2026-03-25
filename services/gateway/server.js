@@ -16,6 +16,58 @@ const services = {
   analytics: process.env.ANALYTICS_SERVICE_URL || 'http://localhost:5008',
 };
 
+const HEALTH_TIMEOUT_MS = Number(process.env.HEALTH_TIMEOUT_MS || 2500);
+
+const probeServiceHealth = async (name, baseUrl) => {
+  const startedAt = Date.now();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), HEALTH_TIMEOUT_MS);
+
+  try {
+    const response = await fetch(`${baseUrl}/health`, {
+      method: 'GET',
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
+    const contentType = response.headers.get('content-type') || '';
+    const body = contentType.includes('application/json') ? await response.json() : await response.text();
+
+    return {
+      service: name,
+      url: baseUrl,
+      ok: response.ok,
+      status: response.status,
+      latencyMs: Date.now() - startedAt,
+      details: body,
+    };
+  } catch (error) {
+    clearTimeout(timeoutId);
+    return {
+      service: name,
+      url: baseUrl,
+      ok: false,
+      status: 0,
+      latencyMs: Date.now() - startedAt,
+      error: error.name === 'AbortError' ? 'timeout' : error.message,
+    };
+  }
+};
+
+const collectServicesHealth = async () => {
+  const checks = await Promise.all(
+    Object.entries(services).map(([name, url]) => probeServiceHealth(name, url))
+  );
+
+  const healthy = checks.filter((check) => check.ok).length;
+  return {
+    overall: healthy === checks.length ? 'healthy' : 'degraded',
+    healthy,
+    total: checks.length,
+    checks,
+  };
+};
+
 const proxy = async (req, res, targetBase, path) => {
   try {
     const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
@@ -55,8 +107,22 @@ app.use('/api/issues/:id/escalate', (req, res) => {
 
 app.use('/api/issues', (req, res) => proxy(req, res, services.issue, req.originalUrl.replace('/api', '')));
 
-app.get('/health', (req, res) => {
-  res.json({ success: true, message: 'Gateway healthy' });
+app.get('/health', async (req, res) => {
+  const downstream = await collectServicesHealth();
+  const statusCode = downstream.overall === 'healthy' ? 200 : 503;
+
+  return res.status(statusCode).json({
+    success: downstream.overall === 'healthy',
+    service: 'gateway',
+    downstream,
+  });
+});
+
+app.get('/health/services', async (req, res) => {
+  const downstream = await collectServicesHealth();
+  const statusCode = downstream.overall === 'healthy' ? 200 : 503;
+
+  return res.status(statusCode).json(downstream);
 });
 
 const PORT = Number(process.env.GATEWAY_PORT || 5000);

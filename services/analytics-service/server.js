@@ -3,6 +3,11 @@ const cors = require('cors');
 const { auth } = require('../common/auth');
 const { requestJson } = require('../common/http');
 
+// Set service-specific MongoDB database for data isolation
+if (!process.env.MONGO_URI) {
+  process.env.MONGO_URI = process.env.ANALYTICS_SERVICE_MONGO_URI || 'mongodb+srv://poojarylishmith_db_user:bZit-iYxnS6NSq5@cluster0.csdcgtv.mongodb.net/analytics_service_db';
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -88,6 +93,10 @@ app.get('/analytics/weekly', auth, async (req, res) => {
   } catch (error) {
     return res.status(error.status || 500).json(error.body || { error: 'Unable to load analytics summary' });
   }
+});
+
+app.get('/health', (req, res) => {
+  return res.json({ success: true, service: 'analytics-service' });
 });
 
 const PORT = Number(process.env.ANALYTICS_SERVICE_PORT || 5008);

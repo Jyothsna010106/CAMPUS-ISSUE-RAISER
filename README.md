@@ -13,6 +13,11 @@ Professional internal issue-resolution platform for colleges, built with microse
 
 ## Architecture
 
+This repository is now **microservices-first** for all active runtime paths.
+
+- Active runtime: `services/` + `services/gateway/` + `frontend/`
+- Legacy monolith: removed from repository
+
 ### Services
 
 1. API Gateway (`5000`)
@@ -88,6 +93,19 @@ npm run dev:frontend
 
 Use this after backend is already running.
 
+### 2c) Run a single backend service (independent unit)
+
+```bash
+npm --prefix services/<service-name> run dev
+```
+
+Examples:
+
+```bash
+npm --prefix services/user-service run dev
+npm --prefix services/gateway run dev
+```
+
 ### 3) Seed demo data (optional, recommended for demos)
 
 ```bash
@@ -121,6 +139,9 @@ npm run seed:mongo
 - Authorities (Teacher, HOD, Dean, Management, Admin) are taggable in issue creation.
 
 ## Core APIs (via Gateway)
+
+- `GET /health`
+- `GET /health/services`
 
 - `POST /api/auth/register`
 - `POST /api/auth/login`
@@ -161,8 +182,10 @@ npm run seed:mongo
 ## Notes
 
 - Services are independent Express apps with separate ports.
+- Every service now has its own `package.json` and can be run independently via `npm --prefix services/<service-name> run dev`.
 - API Gateway centralizes frontend routing.
 - Local persistence uses JSON files in `services/data` for easy demo.
+- `seedUser.js` now seeds users in the active microservices data layer (file or Mongo, based on env).
 - `npm run dev` and `npm run dev:services` are configured to stay up even if one child process exits unexpectedly, so the rest of the stack remains available while you debug the failing service.
 - If needed on Windows, run `npm run dev:services` and `npm run dev:frontend` in separate terminals to isolate the failing process quickly.
 
